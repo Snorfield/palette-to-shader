@@ -47,7 +47,7 @@ async function getPalette(identifier) {
 
         return palette;
     } catch (error) {
-        return {status: null, error: error};
+        return {status: null, error: 'Fetch failed, check that you typed your palette name correctly.'};
     }
 }
 
@@ -154,3 +154,4 @@ function generateCode() {
 
 fetchButton.addEventListener('click', handleFetch);
 generateButton.addEventListener('click', generateCode);
+
