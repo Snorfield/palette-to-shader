@@ -1,16 +1,103 @@
 /*
-* Prefixed by https://autoprefixer.github.io
-* PostCSS: v8.4.14,
-* Autoprefixer: v10.4.7
+* Prefixed by:
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
 * Browsers: last 4 version
 */
 
 body {
-    overflow: hidden;
-    background-color: #292831;
+    margin: 0;
+    font-family: "Google Sans Code", monospace;
+    background-color: #0d2b45;
+    color: #8d697a;
 }
 
-#container {
+p {
+    margin: 0;
+    color: #8d697a;
+}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+    font-family: "Google Sans Code", monospace;
+    color: #8d697a;
+    background-color: #544e68;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+}
+
+input::-moz-placeholder, textarea::-moz-placeholder {
+    font-family: "Google Sans Code", monospace;
+    color: #8d697a;
+    background-color: #544e68;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+}
+
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+    font-family: "Google Sans Code", monospace;
+    color: #8d697a;
+    background-color: #544e68;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+}
+
+input::-ms-input-placeholder, textarea::-ms-input-placeholder {
+    font-family: "Google Sans Code", monospace;
+    color: #8d697a;
+    background-color: #544e68;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+}
+
+input,
+textarea,
+button,
+select,
+input::placeholder,
+textarea::placeholder {
+    font-family: "Google Sans Code", monospace;
+    color: #8d697a;
+    background-color: #544e68;
+    border: none;
+    outline: none;
+    border-radius: 2px;
+}
+
+.input:focus {
+    background-color: #203c56;
+}
+
+.text {
+    color: #544e68;
+}
+
+
+textarea {
+    width: 35vw;
+    height: 30vh;
+    min-width: 165px;
+    resize: none;
+    border-radius: 2px;
+    -webkit-transition: all 0.1s ease-in;
+    -o-transition: all 0.1s ease-in;
+    transition: all 0.1s ease-in;
+}
+
+textarea:focus {
+    -webkit-box-shadow: 0 0 0 3px #8d697a;
+            box-shadow: 0 0 0 3px #8d697a;
+}
+
+#color-input {
+    width: 15.5vw;
+}
+
+.main-container {
+    margin: 0;
     display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
@@ -24,42 +111,44 @@ body {
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
+    gap: 10px;
     height: 100vh;
+}
+
+.flex-container {
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: row;
+            flex-direction: row;
     gap: 10px;
 }
 
-#input,
-#output {
-    resize: none;
-    height: 20vh;
-    font-family: "JetBrains Mono", monospace;
-    border: 2px solid #4a7a96;
-    border-radius: 5px;
-    background-color: #333f58;
-    color: white;
-    -webkit-transition: all 0.2s ease-in;
-    -o-transition: all 0.2s ease-in;
-    transition: all 0.2s ease-in;
-}
-
-#input:focus,
-#output:focus {
-    outline: none;
-    -webkit-box-shadow: 0px 0px 0px 5px rgba(98, 156, 190, 0.312);
-    box-shadow: 0px 0px 0px 5px rgba(98, 156, 190, 0.312);
-}
-
-
-#output {
-    width: 40vw;
-}
-
 .text {
-    font-family: "JetBrains Mono", monospace;
-    font-weight: bold;
-    color: #4a7a96;
+    margin: 0;
 }
 
-#convert {
-    background-color: #333f58;
+.press {
+    cursor: pointer;
+    -webkit-transition: background-color 0.2s ease, -webkit-transform 0.1s ease;
+    transition: background-color 0.2s ease, -webkit-transform 0.1s ease;
+    -o-transition: transform 0.1s ease, background-color 0.2s ease;
+    transition: transform 0.1s ease, background-color 0.2s ease;
+    transition: transform 0.1s ease, background-color 0.2s ease, -webkit-transform 0.1s ease;
+}
+
+.press:hover {
+    background-color: #203c56;
+    -webkit-transform: translateY(-2px);
+        -ms-transform: translateY(-2px);
+            transform: translateY(-2px);
+}
+
+.press:active {
+    -webkit-transform: translateY(1px);
+        -ms-transform: translateY(1px);
+            transform: translateY(1px);
+    background-color: #8d697a; 
 }
