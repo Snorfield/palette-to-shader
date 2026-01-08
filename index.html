@@ -4,24 +4,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>HEX to RGB Array</title>
+    <title>Color Converter</title>
     <link rel="stylesheet" href="index.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,100..800;1,100..800&display=swap');
-    </style>
 
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Color Converter" />
+    <meta property="og:description" content="Convert hex color palettes to GLSL arrays in order to use them in shaders" />
+    <meta property="og:url" content="https://snorfield.github.io/HEX-to-RGB/" />
+
+    <!-- Twitter/X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Color Converter" />
+    <meta name="twitter:description" content="Convert hex color palettes to GLSL arrays in order to use them in shaders" />
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Google+Sans+Code:ital,wght@0,300..800;1,300..800&display=swap');
+    </style>
 </head>
 
 <body>
-    <div id="container">
-        <p class="text">Input 6 digit hex colors seperated on a new line to convert it to a GLSL
-            array format</p>
-        <textarea id="input"></textarea>
-        <button class="text" id="convert">Convert</button>
-        <textarea id="output"></textarea>
-        <a class="text" id="url" href="https://lospec.com/palette-list/twilight-5">Site Color Palette</a>
-        <script src="index.js"></script>
+    <div class="main-container">
+        <p class="text" style="font-size: 15px"><i>Fetch a palette from Lospec</i></p>
+
+        <div class="flex-container">
+            <input id="palette-name" type="text" class="input" autocomplete="off" placeholder="Lospec Palette Name">
+            <button class="button press" id="fetch"><i>Fetch</i></button>
+        </div>
+
+        <div class="color-container">
+            <textarea class="textarea" id="color-input" placeholder="Input hex colors..." spellcheck="false"></textarea>
+            <canvas width="200" height="200" id="canvas"></canvas>
+        </div>
+        <p class="text" style="font-size: 15px"><i>Outline</i></p>
+        <div class="flex-container">
+            <select id="dropdown">
+                <option value="dark">Darkest Color</option>
+                <option value="light">Lightest Color</option>
+            </select>
+            <input type="text" class="input" placeholder="Custom Outline Color" autocomplete="off" id="custom-outline">
+        </div>
+        <button class="button press" id="generate"><i>Generate</i></button>
+
+        <textarea class="textarea" id="code-output" placeholder="Generated code..." spellcheck="false"></textarea>
+        <a class="text" id="url" href="https://lospec.com/palette-list/slso8">Site Color Palette</a>
     </div>
+    
+    <script src="index.js"></script>
 </body>
 
 </html>
