@@ -16,19 +16,21 @@
         <p class="text" style="font-size: 15px"><i>Fetch a palette from Lospec</i></p>
 
         <div class="flex-container">
-            <input id="palette-name" type="text" class="input" placeholder="Lospec Palette Name">
+            <input id="palette-name" type="text" class="input" autocomplete="off" placeholder="Lospec Palette Name">
             <button class="button press" id="fetch"><i>Fetch</i></button>
         </div>
 
-        <textarea class="textarea" id="color-input" placeholder="Input hex colors..." spellcheck="false"></textarea>
-
+        <div class="color-container">
+            <textarea class="textarea" id="color-input" placeholder="Input hex colors..." spellcheck="false"></textarea>
+            <canvas width="200" height="200" id="canvas"></canvas>
+        </div>
         <p class="text" style="font-size: 15px"><i>Outline</i></p>
         <div class="flex-container">
             <select id="dropdown">
                 <option value="dark">Darkest Color</option>
                 <option value="light">Lightest Color</option>
             </select>
-            <input type="text" class="input" placeholder="Custom Outline Color" id="custom-outline">
+            <input type="text" class="input" placeholder="Custom Outline Color" autocomplete="off" id="custom-outline">
         </div>
         <button class="button press" id="generate"><i>Generate</i></button>
 
