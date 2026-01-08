@@ -1,4 +1,5 @@
-# HEX to RGB 
-Small front-end application to convert a list of hex colors to a GLSL array, useful for using colors in shaders.
+# Palette to Shader
+snorfield.github.io/palette-to-shader/
 
-https://snorfield.github.io/HEX-to-RGB/
+Web tool to fetch and convert hex color palettes to shader ready code, complete with a palette preview.
+
