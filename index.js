@@ -5,7 +5,53 @@ const codeInput = document.getElementById('code-output');
 const generateButton = document.getElementById('generate');
 const outlineMode = document.getElementById('dropdown');
 const customOutline = document.getElementById('custom-outline');
+const canvas = document.getElementById('canvas');
 
+const context = canvas.getContext('2d');
+
+const width = canvas.width;
+const height = canvas.height;
+
+const tileSize = 10;
+
+// Intial fill
+context.fillStyle = '#2b333bff';
+context.fillRect(0, 0, width, height);
+context.textAlign = 'center';
+context.textBaseline = 'middle';
+context.font = "15px monospace";
+context.fillStyle = "#ffffffff"
+context.fillText("Palette Preview", width / 2, height / 2);
+
+function draw() {
+    const colors = colorsInput.value;
+    const array = colors.split('\n');
+    const length = array.length;
+
+    columns = Math.ceil(Math.sqrt(length));
+    rows = columns;
+
+    const tileWidth = width / rows;
+    const tileHeight = height / columns;
+
+    context.fillStyle = '#0d2b45';
+    context.fillRect(0, 0, width, height);
+
+    let index = 0;
+    for (let x = 0; x < rows; x++) {
+        for (let y = 0; y < columns; y++) {
+            context.fillStyle = '#2b333bff';
+            if (index <= length - 1) {
+                context.fillStyle = array[index];
+                // We add one to prevent precision issue outlines
+                context.fillRect(x * tileWidth, y * tileHeight, tileWidth + 1, tileHeight + 1);
+            }
+            index++;
+        }
+    }
+}
+
+// Global storage for palette credit.
 let credits = null;
 
 // Original conversion function from https://stackoverflow.com/a/11508164
@@ -32,7 +78,7 @@ function hexToRgb(hex) {
 
 async function getPalette(identifier) {
     if (identifier.length <= 0) {
-        return {status: null, error: 'Palette name is too short (zero characters).'};
+        return { status: null, error: 'Palette name is too short (zero characters).' };
     }
     const normalizedName = identifier.replaceAll(' ', '-').toLowerCase();
 
@@ -40,14 +86,14 @@ async function getPalette(identifier) {
         const response = await fetch(`https://lospec.com/palette-list/${normalizedName}.json`);
 
         if (!response.ok) {
-            return {status: null, error: 'Fetch failed, check that you typed your palette name correctly.'};
+            return { status: null, error: 'Fetch failed, check that you typed your palette name correctly.' };
         }
 
         const palette = await response.json();
 
         return palette;
     } catch (error) {
-        return {status: null, error: 'Fetch failed, check that you typed your palette name correctly.'};
+        return { status: null, error: 'Fetch failed, check that you typed your palette name correctly.' };
     }
 }
 
@@ -63,6 +109,8 @@ async function handleFetch() {
         const formatted = colors.map(color => `#${color}`).join('\n');
 
         colorsInput.value = formatted;
+        // Redraw the canvas since actually setting the value via a program doesn't fire the input event.
+        draw();
     } else {
         colorsInput.value = `Error: ${palette.error}`;
     }
@@ -115,7 +163,7 @@ function vector3(color) {
 function generateCode() {
     let code = '';
 
-    if (credits ) {
+    if (credits) {
         const normalizedName = credits.name.replaceAll(' ', '-').toLowerCase();
 
         // Credit comments at the top of the script.
@@ -124,7 +172,7 @@ function generateCode() {
         code += `// https://lospec.com/palette-list/${normalizedName}\n`;
         code += '\n';
     }
-    
+
     const colors = parseColors();
 
     code += `const colorNumber = ${colors.length};\n`;
@@ -151,7 +199,6 @@ function generateCode() {
     codeInput.value = code;
 }
 
-
 fetchButton.addEventListener('click', handleFetch);
 generateButton.addEventListener('click', generateCode);
-
+colorsInput.addEventListener('input', draw);
