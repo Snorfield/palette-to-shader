@@ -175,9 +175,9 @@ function generateCode() {
 
     const colors = parseColors();
 
-    code += `const colorNum = ${colors.length};\n`;
+    code += `const int colorNum = ${colors.length};\n`;
 
-    code += `vec3 colors[colorNum] = vec3[](\n`;
+    code += `const vec3 colors[colorNum] = vec3[](\n`;
 
     code += colors.map(color => `   ${vector3(color)}`).join(',\n') + '\n';
 
@@ -185,14 +185,14 @@ function generateCode() {
 
     if ((customOutline.value).length > 0) {
         const outline = hexToRgbNormalized(customOutline.value);
-        code += `vec3 outlineColor = ${vector3(outline)};`
+        code += `const vec3 outlineColor = ${vector3(outline)};`
     } else {
         if (outlineMode.value == 'dark') {
             const outline = colors[lowestColorDistance('#000000')];
-            code += `vec3 outlineColor = ${vector3(outline)};`;
+            code += `const vec3 outlineColor = ${vector3(outline)};`;
         } else {
             const outline = colors[lowestColorDistance('#ffffff')];
-            code += `vec3 outlineColor = ${vector3(outline)};`;
+            code += `const vec3 outlineColor = ${vector3(outline)};`;
         }
     }
 
@@ -202,4 +202,5 @@ function generateCode() {
 fetchButton.addEventListener('click', handleFetch);
 generateButton.addEventListener('click', generateCode);
 colorsInput.addEventListener('input', draw);
+
 
