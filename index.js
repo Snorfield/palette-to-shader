@@ -174,9 +174,9 @@ function generateCode() {
 
     const colors = parseColors();
 
-    code += `const int colorNumber = ${colors.length};\n`;
+    code += `const int colorNum = ${colors.length};\n`;
 
-    code += `vec3 colors[colorNumber] = vec3[](\n`;
+    code += `vec3 colors[colorNum] = vec3[](\n`;
 
     code += colors.map(color => `   ${vector3(color)}`).join(',\n') + '\n';
 
@@ -201,4 +201,5 @@ function generateCode() {
 fetchButton.addEventListener('click', handleFetch);
 generateButton.addEventListener('click', generateCode);
 colorsInput.addEventListener('input', draw);
+
 
