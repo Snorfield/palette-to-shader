@@ -57,6 +57,11 @@ let credits = null;
 
 function hexToRgbNormalized(hex) {
     hex = hex.replace(/^#/, "");
+
+    if (hex.length === 3) {
+        hex = hex.split("").map(c => c + c).join("");
+    }
+    
     const bigint = parseInt(hex, 16);
     return [
         ((bigint >> 16) & 255) / 255,
@@ -67,6 +72,11 @@ function hexToRgbNormalized(hex) {
 
 function hexToRgb(hex) {
     hex = hex.replace(/^#/, "");
+
+    if (hex.length === 3) {
+        hex = hex.split("").map(c => c + c).join("");
+    }
+    
     const bigint = parseInt(hex, 16);
     return [
         ((bigint >> 16) & 255),
@@ -201,5 +211,6 @@ function generateCode() {
 fetchButton.addEventListener('click', handleFetch);
 generateButton.addEventListener('click', generateCode);
 colorsInput.addEventListener('input', draw);
+
 
 
