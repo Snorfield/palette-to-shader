@@ -17,6 +17,13 @@ p {
     color: #ffecd6;
 }
 
+hr {
+    margin: 0;
+    background-color: #ffecd6;
+    height: 0.1px;
+    width: 10%;
+}
+
 input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     font-family: "Google Sans Code", monospace;
     color: #ffecd6;
@@ -208,6 +215,12 @@ canvas {
   width: 100%;
   height: 100%;
 }.box {
+    -webkit-box-shadow: 0 0 10px #cecece;
+            box-shadow: 0 0 10px #cecece;
+    -webkit-transition: all .5s;
+    -o-transition: all .5s;
+    transition: all .5s;
+ }.box {
     -webkit-box-shadow: 0 0 10px #cecece;
             box-shadow: 0 0 10px #cecece;
     -webkit-transition: all .5s;
