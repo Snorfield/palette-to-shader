@@ -3,7 +3,6 @@ const paletteNameInput = document.getElementById('palette-name');
 const colorsInput = document.getElementById('color-input');
 const codeInput = document.getElementById('code-output');
 const generateButton = document.getElementById('generate');
-const outlineMode = document.getElementById('dropdown');
 const customOutline = document.getElementById('custom-outline');
 const canvas = document.getElementById('canvas');
 
@@ -175,9 +174,9 @@ function generateCode() {
 
     const colors = parseColors();
 
-    code += `const int colorNum = ${colors.length};\n`;
+    code += `const colorNumber = ${colors.length};\n`;
 
-    code += `const vec3 colors[colorNum] = vec3[](\n`;
+    code += `vec3 colors[colorNumber] = vec3[](\n`;
 
     code += colors.map(color => `   ${vector3(color)}`).join(',\n') + '\n';
 
@@ -185,15 +184,15 @@ function generateCode() {
 
     if ((customOutline.value).length > 0) {
         const outline = hexToRgbNormalized(customOutline.value);
-        code += `const vec3 outlineColor = ${vector3(outline)};`
+        code += `vec3 darkColor = ${vector3(outline)};`
+        code += '\n';
+        code += `vec3 lightColor = ${vector3(outline)};`
     } else {
-        if (outlineMode.value == 'dark') {
-            const outline = colors[lowestColorDistance('#000000')];
-            code += `const vec3 outlineColor = ${vector3(outline)};`;
-        } else {
-            const outline = colors[lowestColorDistance('#ffffff')];
-            code += `const vec3 outlineColor = ${vector3(outline)};`;
-        }
+        const darkOutline = colors[lowestColorDistance('#000000')];
+        code += `vec3 darkColor = ${vector3(darkOutline)};`;
+        code += '\n';
+        const lightOutline = colors[lowestColorDistance('#ffffff')];
+        code += `vec3 lightColor = ${vector3(lightOutline)};`;
     }
 
     codeInput.value = code;
@@ -202,5 +201,3 @@ function generateCode() {
 fetchButton.addEventListener('click', handleFetch);
 generateButton.addEventListener('click', generateCode);
 colorsInput.addEventListener('input', draw);
-
-
