@@ -174,7 +174,7 @@ function generateCode() {
 
     const colors = parseColors();
 
-    code += `const colorNumber = ${colors.length};\n`;
+    code += `const int colorNumber = ${colors.length};\n`;
 
     code += `vec3 colors[colorNumber] = vec3[](\n`;
 
@@ -184,15 +184,15 @@ function generateCode() {
 
     if ((customOutline.value).length > 0) {
         const outline = hexToRgbNormalized(customOutline.value);
-        code += `vec3 darkColor = ${vector3(outline)};`
+        code += `const vec3 darkColor = ${vector3(outline)};`
         code += '\n';
-        code += `vec3 lightColor = ${vector3(outline)};`
+        code += `const vec3 lightColor = ${vector3(outline)};`
     } else {
         const darkOutline = colors[lowestColorDistance('#000000')];
-        code += `vec3 darkColor = ${vector3(darkOutline)};`;
+        code += `const vec3 darkColor = ${vector3(darkOutline)};`;
         code += '\n';
         const lightOutline = colors[lowestColorDistance('#ffffff')];
-        code += `vec3 lightColor = ${vector3(lightOutline)};`;
+        code += `const vec3 lightColor = ${vector3(lightOutline)};`;
     }
 
     codeInput.value = code;
@@ -201,3 +201,4 @@ function generateCode() {
 fetchButton.addEventListener('click', handleFetch);
 generateButton.addEventListener('click', generateCode);
 colorsInput.addEventListener('input', draw);
+
