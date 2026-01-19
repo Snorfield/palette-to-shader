@@ -32,18 +32,20 @@
             <button class="button press" id="fetch"><i>Fetch</i></button>
         </div>
 
+        <hr>
+
         <div class="color-container">
             <textarea class="textarea" id="color-input" placeholder="Input hex colors..." spellcheck="false"></textarea>
             <canvas width="200" height="200" id="canvas"></canvas>
         </div>
+
+        <hr>
+
         <p class="text" style="font-size: 15px"><i>Outline</i></p>
-        <div class="flex-container">
-            <select id="dropdown">
-                <option value="dark">Darkest Color</option>
-                <option value="light">Lightest Color</option>
-            </select>
-            <input type="text" class="input" placeholder="Custom Outline Color" autocomplete="off" id="custom-outline">
-        </div>
+        <input type="text" class="input" placeholder="Custom Outline Color" autocomplete="off" id="custom-outline">
+        
+        <hr>
+        
         <button class="button press" id="generate"><i>Generate</i></button>
 
         <textarea class="textarea" id="code-output" placeholder="Generated code..." spellcheck="false"></textarea>
